@@ -1,7 +1,8 @@
 import { CharactersTable } from "@/components/CharactersTable";
+import { publicRuntimeConfig } from "../../next.config";
 
 export default async function Home() {
-  const res = await fetch("https://rickandmortyapi.com/api/character/");
+  const res = await fetch(publicRuntimeConfig?.api);
   const data = await res.json();
 
   return (

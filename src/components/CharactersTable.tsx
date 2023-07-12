@@ -1,18 +1,19 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { publicRuntimeConfig } from "../../next.config";
 
 export const CharactersTable = ({ characters }: { characters: any }) => {
   const { info, results: defaultResults = [] } = characters;
   const [results, updateResults] = useState(defaultResults);
   const [page, updatePage] = useState({
     ...info,
-    current: "https://rickandmortyapi.com/api/character/",
+    current: publicRuntimeConfig?.api,
   });
   const { current } = page;
 
   useEffect(() => {
-    if (current === "https://rickandmortyapi.com/api/character/") return;
+    if (current === publicRuntimeConfig?.api) return;
 
     async function request() {
       const res = await fetch(current);

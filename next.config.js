@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   images: {
     domains: ["rickandmortyapi.com"],
     formats: ["image/webp", "image/avif"],
   },
+
+  publicRuntimeConfig: {
+    api: "https://rickandmortyapi.com/api/character/",
+  },
 };
+
+module.exports = nextConfig;

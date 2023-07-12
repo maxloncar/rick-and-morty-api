@@ -1,9 +1,8 @@
 import { CharactersTable } from "@/components/CharactersTable";
 
 export default async function Home() {
-  const res = await fetch("https://rickandmortyapi.com/api/character");
+  const res = await fetch("https://rickandmortyapi.com/api/character/");
   const data = await res.json();
-  const { results = [] } = data;
 
   return (
     <main>
@@ -15,7 +14,7 @@ export default async function Home() {
           Characters
         </h1>
 
-        <CharactersTable characters={results} />
+        <CharactersTable characters={data} />
       </div>
     </main>
   );

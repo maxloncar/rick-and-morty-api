@@ -50,7 +50,7 @@ export const CharactersTable = ({ characters }: { characters: any }) => {
 
   function handleOnSubmitSearch(e: any) {
     e.preventDefault();
-    const endpoint = `https://rickandmortyapi.com/api/character/?name=${searchValue}`;
+    const endpoint = `${publicRuntimeConfig?.api}?name=${searchValue}`;
 
     updatePage({
       current: endpoint,

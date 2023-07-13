@@ -1,5 +1,6 @@
 "use client";
 import { Character } from "./Character";
+import { Button } from "./Button";
 import { useEffect, useState } from "react";
 import { publicRuntimeConfig } from "../../next.config";
 
@@ -53,12 +54,7 @@ export const CharactersTable = ({ characters }: { characters: any }) => {
           return <Character key={id} name={name} image={image} />;
         })}
       </ul>
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded self-center"
-        onClick={handleLoadMore}
-      >
-        Load More
-      </button>
+      <Button text="Load More" onclick={handleLoadMore} />
     </div>
   );
 };

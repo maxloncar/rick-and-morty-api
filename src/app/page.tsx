@@ -14,7 +14,6 @@ export default async function Home() {
           </span>{" "}
           Characters
         </h1>
-
         <CharactersTable characters={data} />
       </div>
     </main>

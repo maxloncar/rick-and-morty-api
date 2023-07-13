@@ -3,6 +3,7 @@ import { Character } from "./Character";
 import { Button } from "./Button";
 import { useEffect, useState } from "react";
 import { publicRuntimeConfig } from "../../next.config";
+import { SearchInput } from "./SearchInput";
 
 export const CharactersTable = ({ characters }: { characters: any }) => {
   const { info, results: defaultResults = [] } = characters;
@@ -11,6 +12,7 @@ export const CharactersTable = ({ characters }: { characters: any }) => {
     ...info,
     current: publicRuntimeConfig?.api,
   });
+  const [searchValue, setSearchValue] = useState("");
   const { current } = page;
 
   useEffect(() => {
@@ -46,15 +48,28 @@ export const CharactersTable = ({ characters }: { characters: any }) => {
     });
   }
 
+  function handleOnSubmitSearch(e: any) {
+    e.preventDefault();
+    const endpoint = `https://rickandmortyapi.com/api/character/?name=${searchValue}`;
+
+    updatePage({
+      current: endpoint,
+    });
+  }
+
   return (
     <div className="flex flex-col">
+      <SearchInput
+        handleOnSubmitSearch={handleOnSubmitSearch}
+        setSearchValue={setSearchValue}
+      />
       <ul className="grid grid-cols-4">
         {results.map((result: any) => {
           const { id, name, image } = result;
           return <Character key={id} name={name} image={image} />;
         })}
       </ul>
-      <Button text="Load More" onclick={handleLoadMore} />
+      <Button text="Load More" onClick={handleLoadMore} />
     </div>
   );
 };

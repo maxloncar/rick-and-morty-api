@@ -58,15 +58,15 @@ export const CharactersTable = ({ characters }: { characters: any }) => {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-9/12">
       <SearchInput
         handleOnSubmitSearch={handleOnSubmitSearch}
         setSearchValue={setSearchValue}
       />
-      <ul className="grid grid-cols-4">
-        {results.map((result: any) => {
+      <ul className="grid grid-cols-4 my-6">
+        {results?.map((result: any) => {
           const { id, name, image } = result;
-          return <Character key={id} name={name} image={image} />;
+          return <Character key={id} id={id} name={name} image={image} />;
         })}
       </ul>
       <Button text="Load More" onClick={handleLoadMore} />

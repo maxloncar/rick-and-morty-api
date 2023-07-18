@@ -1,9 +1,13 @@
 import { publicRuntimeConfig } from "../../../../next.config";
 import Image from "next/image";
+import { getData } from "@/app/layout";
 
-export default async function Home({ params }: { params: { id: number } }) {
-  const res = await fetch(`${publicRuntimeConfig?.api}/${params.id}`);
-  const data = await res.json();
+export default async function Home({
+  params: { id },
+}: {
+  params: { id: number };
+}) {
+  const data = await getData(`${publicRuntimeConfig?.api}/${id}`);
 
   const { name, image, gender, location, origin, species, status } = data;
 

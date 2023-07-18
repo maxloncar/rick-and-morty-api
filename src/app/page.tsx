@@ -1,9 +1,9 @@
 import { CharactersTable } from "@/components/CharactersTable";
 import { publicRuntimeConfig } from "../../next.config";
+import { getData } from "./layout";
 
 export default async function Home() {
-  const res = await fetch(publicRuntimeConfig?.api);
-  const data = await res.json();
+  const data = await getData(publicRuntimeConfig?.api);
 
   return (
     <main>

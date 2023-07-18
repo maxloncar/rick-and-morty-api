@@ -1,13 +1,15 @@
+"use client";
+
 import { publicRuntimeConfig } from "../../../../next.config";
 import Image from "next/image";
-import { getData } from "@/app/layout";
+import { getData } from "@/app/page";
+import { use } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/Button";
 
-export default async function Home({
-  params: { id },
-}: {
-  params: { id: number };
-}) {
-  const data = await getData(`${publicRuntimeConfig?.api}/${id}`);
+export default function Home({ params: { id } }: { params: { id: number } }) {
+  const data = use(getData(`${publicRuntimeConfig?.api}/${id}`));
+  const router = useRouter();
 
   const { name, image, gender, location, origin, species, status } = data;
 
@@ -60,6 +62,7 @@ export default async function Home({
           </p>
         </div>
       </div>
+      <Button text="Back to the Characters" onClick={() => router.back()} />
     </div>
   );
 }

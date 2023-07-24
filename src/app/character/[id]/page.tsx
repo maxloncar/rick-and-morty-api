@@ -11,6 +11,10 @@ export default function Home({ params: { id } }: { params: { id: number } }) {
   const data = use(getData(`${publicRuntimeConfig?.api}/${id}`));
   const router = useRouter();
 
+  const episodes = use(getData(data.episode[0]));
+
+  console.log(data.episode[0], episodes.name);
+
   const { name, image, gender, location, origin, species, status } = data;
 
   return (

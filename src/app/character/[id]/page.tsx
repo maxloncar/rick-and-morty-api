@@ -9,13 +9,13 @@ import { Button } from "@/components/Button";
 
 export default function Home({ params: { id } }: { params: { id: number } }) {
   const data = use(getData(`${publicRuntimeConfig?.api}/${id}`));
+  const firstEpisode = use(getData(data.episode[0]));
   const router = useRouter();
 
-  const episodes = use(getData(data.episode[0]));
-
-  console.log(data.episode[0], episodes.name);
+  console.log(data);
 
   const { name, image, gender, location, origin, species, status } = data;
+  const { name: firstEpisodeName, episode } = firstEpisode;
 
   return (
     <div className="grid h-screen place-items-center">
@@ -57,6 +57,12 @@ export default function Home({ params: { id } }: { params: { id: number } }) {
               Species:
             </span>{" "}
             {species}
+          </p>
+          <p className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
+            <span className="font-bold text-gray-900 dark:text-white">
+              First seen in:
+            </span>{" "}
+            {firstEpisodeName} ({episode})
           </p>
           <p className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
             <span className="font-bold text-gray-900 dark:text-white">

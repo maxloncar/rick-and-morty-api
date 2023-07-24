@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+Simple Next js 13 app about Rick and Morty. All data are fetched from a free [Rick and Morty API](https://rickandmortyapi.com/). Tailwind CSS is used for the design.
+
 ## Getting Started
 
 First, run the development server:

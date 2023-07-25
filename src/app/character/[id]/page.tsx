@@ -18,8 +18,8 @@ export default function Home({ params: { id } }: { params: { id: number } }) {
   const { name: lastEpisodeName, episode: lastEpisode } = lastEpisodeData;
 
   return (
-    <div className="grid h-screen place-items-center">
-      <div className="flex-col max-w-md bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="grid place-items-center">
+      <div className="flex-col max-w-md mb-8 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <Image
           className="rounded-t-lg w-full"
           src={image}
@@ -31,7 +31,7 @@ export default function Home({ params: { id } }: { params: { id: number } }) {
 
         <div>
           <h2
-            className={`py-6 text-5xl text-center font-bold tracking-tight text-gray-900 dark:text-white ${
+            className={`py-4 text-3xl text-center font-bold tracking-tight text-gray-900 dark:text-white ${
               status == "Alive"
                 ? "bg-green-700"
                 : status == "Dead"

@@ -9,13 +9,13 @@ import { Button } from "@/components/Button";
 
 export default function Home({ params: { id } }: { params: { id: number } }) {
   const data = use(getData(`${publicRuntimeConfig?.api}/${id}`));
-  const firstEpisode = use(getData(data.episode[0]));
+  const firstEpisodeData = use(getData(data.episode[0]));
+  const lastEpisodeData = use(getData(data.episode[data.episode.length - 1]));
   const router = useRouter();
 
-  console.log(data);
-
   const { name, image, gender, location, origin, species, status } = data;
-  const { name: firstEpisodeName, episode } = firstEpisode;
+  const { name: firstEpisodeName, episode: firstEpisode } = firstEpisodeData;
+  const { name: lastEpisodeName, episode: lastEpisode } = lastEpisodeData;
 
   return (
     <div className="grid h-screen place-items-center">
@@ -29,47 +29,62 @@ export default function Home({ params: { id } }: { params: { id: number } }) {
           priority={true}
         />
 
-        <div className="p-8">
-          <h2 className="mb-8 text-5xl text-center font-bold tracking-tight text-gray-900 dark:text-white">
+        <div>
+          <h2
+            className={`py-6 text-5xl text-center font-bold tracking-tight text-gray-900 dark:text-white ${
+              status == "Alive"
+                ? "bg-green-700"
+                : status == "Dead"
+                ? "bg-red-700"
+                : "bg-gray-500"
+            } `}
+          >
             {name}
           </h2>
-
-          <p className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
-            <span className="font-bold text-gray-900 dark:text-white">
-              Gender:
-            </span>{" "}
-            {gender}
-          </p>
-          <p className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
-            <span className="font-bold text-gray-900 dark:text-white">
-              Location:
-            </span>{" "}
-            {location?.name}
-          </p>
-          <p className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
-            <span className="font-bold text-gray-900 dark:text-white">
-              Originally From:
-            </span>{" "}
-            {origin?.name}
-          </p>
-          <p className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
-            <span className="font-bold text-gray-900 dark:text-white">
-              Species:
-            </span>{" "}
-            {species}
-          </p>
-          <p className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
-            <span className="font-bold text-gray-900 dark:text-white">
-              First seen in:
-            </span>{" "}
-            {firstEpisodeName} ({episode})
-          </p>
-          <p className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
-            <span className="font-bold text-gray-900 dark:text-white">
-              Status:
-            </span>{" "}
-            {status}
-          </p>
+          <div className="px-8 pb-4 pt-8">
+            <div className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
+              <span className="font-bold text-gray-900 dark:text-white">
+                Gender:
+              </span>{" "}
+              {gender}
+            </div>
+            <div className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
+              <span className="font-bold text-gray-900 dark:text-white">
+                Location:
+              </span>{" "}
+              {location?.name}
+            </div>
+            <div className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
+              <span className="font-bold text-gray-900 dark:text-white">
+                Originally From:
+              </span>{" "}
+              {origin?.name}
+            </div>
+            <div className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
+              <span className="font-bold text-gray-900 dark:text-white">
+                Species:
+              </span>{" "}
+              {species}
+            </div>
+            <div className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
+              <span className="font-bold text-gray-900 dark:text-white">
+                First seen in:
+              </span>{" "}
+              {firstEpisodeName} ({firstEpisode})
+            </div>
+            <div className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
+              <span className="font-bold text-gray-900 dark:text-white">
+                Last seen in:
+              </span>{" "}
+              {lastEpisodeName} ({lastEpisode})
+            </div>
+            <div className="mb-4 font-normal text-2xl text-gray-700 dark:text-gray-400">
+              <span className="font-bold text-gray-900 dark:text-white ">
+                Status:
+              </span>{" "}
+              {status}
+            </div>
+          </div>
         </div>
       </div>
       <Button text="Back to the Characters" onClick={() => router.back()} />

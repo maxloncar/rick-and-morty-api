@@ -18,7 +18,7 @@ export default function Home({ params: { id } }: { params: { id: number } }) {
   const { name: lastEpisodeName, episode: lastEpisode } = lastEpisodeData;
 
   return (
-    <div className="grid place-items-center">
+    <div className="grid place-items-center my-8">
       <div className="flex-col max-w-md mb-8 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <Image
           className="rounded-t-lg w-full"
